@@ -3,7 +3,6 @@ import './App.css';
 
 import { FormProvider } from './components/FormContext';
 import Identification from './components/Identification';
-import Header from './components/Header';
 import PlanningPhase from './components/PlanningPhase';
 import Publication from './components/Publication';
 import TenderPublication from './components/TenderPublication';
@@ -17,9 +16,6 @@ import { store } from './Store';
 function App() {
   return (
     <>
-    
-   
-    
     <Provider store={store}>
     <Routes>
       <Route path='/' element={<Navigate to={'/identification'}/>}/>
@@ -34,8 +30,6 @@ function App() {
       <Route path='/invoice' element={<Invoice/>}/>
     </Routes>
     </Provider>
-    
-    
     </>
   );
 }

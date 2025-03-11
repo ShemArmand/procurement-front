@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 const TenderPublication = () => {
   return (
     <>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <body>
+    <section>
         <Header/>
         
         <div id='title' >
@@ -59,7 +58,7 @@ const TenderPublication = () => {
             </div>
         </div>
     
-    </body>
+    </section>
     </>
   )
 }

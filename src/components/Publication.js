@@ -6,8 +6,7 @@ import { NavLink } from 'react-router-dom';
 const Publication = () => {
   return (
     <>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <body>
+    <section>
         <Header/>
         <div id='title' >
             <h2>Publication of procurement plan</h2>
@@ -65,7 +64,7 @@ const Publication = () => {
             
         </div>
         </div>
-    </body>
+    </section>
     </>
   )
 }

@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 const ContractSigning = () => {
   return (
     <>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <body>
+    <section>
         <Header/>
         <div id='title'>
             <h2>Contract signing</h2>
@@ -119,7 +118,7 @@ const ContractSigning = () => {
                                    
             </div>
         </div>
-    </body>
+    </section>
     </>
   )
 }

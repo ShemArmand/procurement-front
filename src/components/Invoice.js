@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Invoice = () => {
   return (
     <>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <body>
+    <section>
         <Header/>
         <div id='title'>
             <h2>Invoice</h2>
@@ -56,7 +55,7 @@ const Invoice = () => {
             </div>
         </div>
 
-    </body>
+    </section>
     </>
   )
 }

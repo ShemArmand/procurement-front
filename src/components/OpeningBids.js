@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 const OpeningBids = () => {
   return (
     <>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <body>
+    <section>
         <Header/>
         <div id='title' >
             <h2>Opening of Bids</h2>
@@ -37,7 +36,7 @@ const OpeningBids = () => {
                         </div>
 
         </div>
-    </body>
+    </section>
     </>
   )
 }

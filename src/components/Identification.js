@@ -6,40 +6,83 @@ import { NavLink } from 'react-router-dom';
 import { FormContext } from './FormContext';
 import { updateTenderTitle } from '../FormSlice';
 import { createDispatchHook, useDispatch } from 'react-redux';
-
+import { createIdentificationForm } from '../services/FormService';
 
 const Identification = () => {
-            const [procurementDiv, setProcurementDiv] = useState ('')
-            const [financialYear, setFinacialYear] = useState('')
-            const [division, setDivision] = useState('')
-            const [divManagerEmail, setDivManagerEmail] = useState('')
-            const [divManagerPhone, setDivManagerPhone] = useState('')
-            const [projectManagerEmail, setProjectManagerEmail] = useState('')
-            const [contractManagerPhone, setContractManagerPhone] = useState('')
-            const [tenderTitle, setTenderTitle] = useState('')
-            const [tenderCategory, setTenderCategory] = useState('')
-            const [quantity, setQuantity] = useState('')
-            const [SourceOfFunds, setSourceOfFunds] = useState('')
-            const [budgetLine, setBudgetLine] = useState('')
-            const [estimatedAmount, setEstimatedAmount] = useState('')
-            const [technicalSpecification, setTechnicalSpecification] = useState('')
-            const [surveyReport, setSurveyReport] = useState('')
-            const [tentativeTimeLine, setTentativeTimeLine] = useState('')
-            const [status, setStatus] = useState('')
-            
- 
-    
+    const [procurementDiv, setProcurementDiv] = useState ('')
+    const [financialYear, setFinacialYear] = useState('')
+    const [division, setDivision] = useState('')
+    const [divManagerEmail, setDivManagerEmail] = useState('')
+    const [divManagerPhone, setDivManagerPhone] = useState('')
+    const [projectManagerEmail, setProjectManagerEmail] = useState('')
+    const [contractManagerPhone, setContractManagerPhone] = useState('')
+    const [tenderTitle, setTenderTitle] = useState('')
+    const [tenderCategory, setTenderCategory] = useState('')
+    const [quantity, setQuantity] = useState('')
+    const [SourceOfFunds, setSourceOfFunds] = useState('')
+    const [budgetLine, setBudgetLine] = useState('')
+    const [estimatedAmount, setEstimatedAmount] = useState('')
+    const [technicalSpecification, setTechnicalSpecification] = useState('')
+    const [surveyReport, setSurveyReport] = useState('')
+    const [tentativeTimeLine, setTentativeTimeLine] = useState('')
+    const [status, setStatus] = useState('')
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState('')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const formData = {
+                procurementDiv,
+                financialYear,
+                division,
+                divManagerEmail,
+                divManagerPhone,
+                projectManagerEmail,
+                contractManagerPhone,
+                tenderTitle,
+                tenderCategory,
+                quantity,
+                SourceOfFunds,
+                budgetLine,
+                estimatedAmount,
+                technicalSpecification,
+                surveyReport,
+                tentativeTimeLine,
+                status
+            };
+
+            console.log(formData);
+
+            const response = await createIdentificationForm(formData);
+            setSuccess('Form submitted successfully!');
+
+            if (response.status === 200) {
+                setSuccess('Form submitted successfully!');
+                console.log('Form submitted successfully!');
+                // navigate('/planningPhase');
+            } else {
+                setError('Error submitting form: ' + (response?.data?.message || response?.data?.error));
+                setSuccess('');
+            }
+            // You can add navigation logic here if needed
+        } catch (err) {
+            setError('Error submitting form: ' + (err.response?.data?.message || err.message));
+            setSuccess('');
+        }
+    };
+
   return (
     <>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <body>
+    <section>
     <Header/>
     <div id='title' >
             <h2>Identification of Needs From program</h2>
     </div>
     
     <div id='container'>
+    <form onSubmit={handleSubmit}>
     <div id='proc-div'>
         <label className='form-label'>Procurement division</label>
         <select className='form-select' onChange={(e)=> setProcurementDiv(e.target.value)}>
@@ -124,35 +167,35 @@ const Identification = () => {
     </div>
     <hr/>
     <div>
-        <lable className='from-label'>Quantity</lable>
+        <label className='from-label'>Quantity</label>
     </div>
     <div id='div'>
         <input type='text' className='form-control' placeholder='Quantity' onChange={(e)=> setQuantity(e.target.value)}/>
     </div>
     <hr/>
     <div>
-        <lable className='form-label'>Source of funds</lable>
+        <label className='form-label'>Source of funds</label>
     </div>
     <div id='div'>
         <input type='text' className='form-control' placeholder='Source of funds' onChange={(e)=> setSourceOfFunds(e.target.value)}/>
     </div>
     <hr/>
     <div>
-        <lable className='form-label'>Budget line</lable>
+        <label className='form-label'>Budget line</label>
     </div>
     <div id='div'>
         <input type='text' className='form-control' placeholder='Budget line' onChange={(e)=> setBudgetLine (e.target.value)}/>
     </div>
     <hr/>
     <div>
-        <lable className='form-label'>Estimated amount</lable>
+        <label className='form-label'>Estimated amount</label>
     </div>
     <div id='div'>
         <input type='text' className='form-control' placeholder='Amount' onChange={(e)=> setEstimatedAmount(e.target.value)}/>
     </div>
     <hr/>
     <div>
-        <lable className='form-label'>Technical specification or term of reference</lable>
+        <label className='form-label'>Technical specification or term of reference</label>
     </div>
     <div id='div'>
         <input type='text' className='form-control' placeholder='' onChange={(e)=> setTechnicalSpecification(e.target.value)}/>
@@ -183,14 +226,18 @@ const Identification = () => {
     </div>
     <hr/>
     <div>
-
+        {error && <div className="alert alert-danger">{error}</div>}
+        {success && <div className="alert alert-success">{success}</div>}
     </div>
+    <div>
+        <button type="submit" className="btn btn-primary me-2">Submit</button>
         <NavLink to='/planningPhase'>
-        <button className="btn btn-info" >Next Page{'>>'}</button>
-        {console.log(tenderTitle)}
+            <button type="button" className="btn btn-info">Next Page{'>>'}</button>
         </NavLink>
     </div>
-    </body>
+    </form>
+    </div>
+    </section>
     </>
   )
 }

@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 const ContractManagement = () => {
   return (
     <>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <body>
+    <section>
         <Header/>
         <div id='title'>
             <h2>Contract management start date / purchase order</h2>
@@ -149,7 +148,7 @@ const ContractManagement = () => {
                 </NavLink>                                   
             </div>
     </div>
-    </body>
+    </section>
     </>
   )
 }

@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 const BidEvaluation = () => {
   return (
     <>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <body>
+    <section>
         <Header/>
         <div id='title'>
             <h2>Bid Evaluation date</h2>
@@ -71,7 +70,7 @@ const BidEvaluation = () => {
                                    
             </div>
         </div>
-    </body>
+    </section>
     </>
   )
 }
